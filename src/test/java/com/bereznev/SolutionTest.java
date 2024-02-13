@@ -16,6 +16,25 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> longestCommonPrefixSource() {
+    return Stream.of(
+        Arguments.of(new String[]{}, ""),
+        Arguments.of(new String[]{null}, ""),
+        Arguments.of(new String[]{"11", null}, ""),
+        Arguments.of(new String[]{"flower","flow","flight"}, "fl"),
+        Arguments.of(new String[]{"dog","racecar","car"}, ""),
+        Arguments.of(new String[]{"a"}, "a"),
+        Arguments.of(new String[]{"ab", "a"}, "a"),
+        Arguments.of(new String[]{"flower", "flower", "flower", "flower"}, "flower")
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "longestCommonPrefixSource")
+  public void longestCommonPrefixTest(String[] input, String expected) {
+    assertEquals(expected, solution.longestCommonPrefix(input));
+  }
+
   public static Stream<Arguments> romanToIntSource() {
     return Stream.of(
         Arguments.of("", "0"),
