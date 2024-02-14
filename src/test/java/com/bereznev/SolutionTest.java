@@ -16,6 +16,21 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> isPalindromeSource() {
+    return Stream.of(
+        Arguments.of(121, true),
+        Arguments.of(-121, false),
+        Arguments.of(10, false),
+        Arguments.of(1221, true)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "isPalindromeSource")
+  public void isPalindromeTest(int x, boolean expected) {
+    assertEquals(expected, solution.isPalindrome(x));
+  }
+
   public static Stream<Arguments> longestCommonPrefixSource() {
     return Stream.of(
         Arguments.of(new String[]{}, ""),

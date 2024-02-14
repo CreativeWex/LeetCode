@@ -10,9 +10,26 @@ import java.util.Objects;
 @Component
 public class Solution {
 
+  // https://leetcode.com/problems/palindrome-number/submissions/1174861513/
+  public boolean isPalindrome(int x) {
+    if (x < 0 || (x != 0 && x % 10 == 0)) {
+      return false;
+    }
+
+    String input = String.valueOf(x);
+    String firstHalf = input.substring(0, input.length() / 2);
+    String secondHalf;
+    if (input.length() % 2 != 0) {
+      secondHalf = input.substring(input.length() / 2 + 1);
+    } else {
+      secondHalf = input.substring(input.length() / 2);
+    }
+    return firstHalf.equals(new StringBuilder(secondHalf).reverse().toString());
+  }
+
   //  https://leetcode.com/problems/longest-common-prefix/description/?source=submission-ac
   public String longestCommonPrefix(String[] strs) {
-    if (strs == null || strs.length == 0 || Arrays.stream(strs) .anyMatch(Objects::isNull)) {
+    if (strs == null || strs.length == 0 || Arrays.stream(strs).anyMatch(Objects::isNull)) {
       return "";
     }
     int maxLen = Arrays.stream(strs).map(String::length).min(Integer::compareTo).orElse(0);
