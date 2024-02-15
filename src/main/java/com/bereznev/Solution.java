@@ -9,6 +9,23 @@ import java.util.Objects;
 
 @Component
 public class Solution {
+  //todo unit-test
+  //  https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
+  public String firstPalindrome(String[] words) {
+    for (String word : words) {
+      String firstHalf = word.substring(0, word.length() / 2);
+      String secondHalf;
+      if (word.length() % 2 != 0) {
+        secondHalf = word.substring(word.length() / 2 + 1);
+      } else {
+        secondHalf = word.substring(word.length() / 2);
+      }
+      if (firstHalf.equals(new StringBuilder(secondHalf).reverse().toString())) {
+        return word;
+      }
+    }
+    return "";
+  }
 
   // https://leetcode.com/problems/palindrome-number/submissions/1174861513/
   public boolean isPalindrome(int x) {
