@@ -16,6 +16,25 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> isParenthesesValidSource() {
+    return Stream.of(
+        Arguments.of("()", true),
+        Arguments.of("[]", true),
+        Arguments.of("{}", true),
+        Arguments.of("()[]{}", true),
+        Arguments.of("()[]{", false),
+        Arguments.of("[", false),
+        Arguments.of("[[", false),
+        Arguments.of("]]", false)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "isParenthesesValidSource")
+  public void isParenthesesValidTest(String string, boolean expected) {
+    assertEquals(expected, solution.isParenthesesValid(string));
+  }
+
   public static Stream<Arguments> isPalindromeSource() {
     return Stream.of(
         Arguments.of(121, true),

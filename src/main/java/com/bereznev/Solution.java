@@ -2,13 +2,32 @@ package com.bereznev;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Component
 public class Solution {
+  //  https://leetcode.com/problems/valid-parentheses/description/
+  public boolean isParenthesesValid(String s) {
+    if (s == null || s.length() % 2 != 0) {
+      return false;
+    }
+    Stack<Character> stack = new Stack<>();
+    for (char c : s.toCharArray()) {
+      if (c == '(' || c == '{' || c == '[') {
+        stack.push(c);
+      } else {
+        if (stack.isEmpty()) {
+          return false;
+        }
+        char opening = stack.pop();
+        if ((c == ')' && opening != '(') || (c == ']' && opening != '[') || (c == '}' && opening != '{')) {
+          return false;
+        }
+      }
+    }
+    return stack.isEmpty();
+  }
+
   //todo unit-test
   //  https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
   public String firstPalindrome(String[] words) {
