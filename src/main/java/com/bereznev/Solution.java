@@ -7,7 +7,7 @@ import java.util.*;
 @Component
 public class Solution {
   //  https://leetcode.com/problems/valid-parentheses/description/
-  public boolean isParenthesesValid(String s) {
+  public boolean isParenthesesValid(String s) { //NOSONAR
     if (s == null || s.length() % 2 != 0) {
       return false;
     }
@@ -26,6 +26,15 @@ public class Solution {
       }
     }
     return stack.isEmpty();
+  }
+
+  //  https://leetcode.com/problems/sqrtx/description/
+  public int mySqrt(int x) {
+    long r = x;
+    while (r * r > x) {
+      r = (r + x / r) / 2;
+    }
+    return (int) r;
   }
 
   //todo unit-test

@@ -2,6 +2,7 @@ package com.bereznev;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +34,12 @@ class SolutionTest {
   @MethodSource(value = "isParenthesesValidSource")
   public void isParenthesesValidTest(String string, boolean expected) {
     assertEquals(expected, solution.isParenthesesValid(string));
+  }
+
+  @ParameterizedTest
+  @CsvSource({"4, 2", "9, 3", "8, 2"})
+  public void mySqrtTest(int x, int expected) {
+    assertEquals(expected, solution.mySqrt(x));
   }
 
   public static Stream<Arguments> isPalindromeSource() {
