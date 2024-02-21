@@ -6,6 +6,18 @@ import java.util.*;
 
 @Component
 public class Solution {
+
+  public int lengthOfLastWord(String s) {
+    if (s == null || s.isEmpty()) {
+      return 0;
+    }
+    if (!s.contains(" ")) {
+      return s.length();
+    }
+    String[] words = s.split(" ");
+    return words[words.length - 1].length();
+  }
+
   //todo unit-test
   // https://leetcode.com/problems/search-insert-position/
   public int searchInsert(int[] nums, int target) {
