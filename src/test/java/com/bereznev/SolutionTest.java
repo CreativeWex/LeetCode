@@ -17,6 +17,20 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> singleNumberSource() {
+    return Stream.of(
+        Arguments.of(new int[]{2,2,1}, 1),
+        Arguments.of(new int[]{4,1,2,1,2}, 4),
+        Arguments.of(new int[]{1}, 1)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "singleNumberSource")
+  public void singleNumberTest(int[] input, int expected) {
+    assertEquals(expected, solution.singleNumber(input));
+  }
+
   public static Stream<Arguments> isParenthesesValidSource() {
     return Stream.of(
         Arguments.of("()", true),

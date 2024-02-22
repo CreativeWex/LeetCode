@@ -7,6 +7,22 @@ import java.util.*;
 @Component
 public class Solution {
 
+  // https://leetcode.com/problems/single-number/
+  public int singleNumber(int[] nums) {
+    Map<Integer, Integer> seenBefore = new TreeMap<>();
+
+    for (int num : nums) {
+      seenBefore.put(num, seenBefore.getOrDefault(num, 0) + 1);
+    }
+    for (Map.Entry<Integer, Integer> entry : seenBefore.entrySet()) {
+      if (entry.getValue() == 1) {
+        return entry.getKey();
+      }
+    }
+    return 0;
+  }
+
+  // https://leetcode.com/problems/length-of-last-word/
   public int lengthOfLastWord(String s) {
     if (s == null || s.isEmpty()) {
       return 0;
