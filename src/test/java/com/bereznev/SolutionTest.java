@@ -17,6 +17,21 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> maxProfitSource() {
+    return Stream.of(
+        Arguments.of(new int[]{7,1,5,3,6,4}, 5),
+        Arguments.of(new int[]{7,6,4,3,1}, 0),
+        Arguments.of(new int[]{2,4,1}, 2),
+        Arguments.of(new int[]{3,2,6,5,0,3}, 4)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "maxProfitSource")
+  public void maxProfitTest(int[] input, int expected) {
+    assertEquals(expected, solution.maxProfit(input));
+  }
+
   public static Stream<Arguments> singleNumberSource() {
     return Stream.of(
         Arguments.of(new int[]{2,2,1}, 1),

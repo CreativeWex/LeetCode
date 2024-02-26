@@ -6,6 +6,23 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+  public int maxProfit(int[] prices) {
+    int minPrice = prices[0];
+    int maxProfit = 0;
+    for (int price : prices) {
+      if (price < minPrice) {
+        minPrice = price;
+      } else {
+        if (price - minPrice > maxProfit) {
+          maxProfit = price - minPrice;
+        }
+      }
+    }
+    return maxProfit;
+  }
+
+  //todo unit-test
   // https://leetcode.com/problems/plus-one/
   public int[] plusOne(int[] digits) {
     int n = digits.length;
@@ -20,6 +37,7 @@ public class Solution {
     newNumber[0] = 1;
     return newNumber;
   }
+
 
   // https://leetcode.com/problems/single-number/
   public int singleNumber(int[] nums) {
