@@ -6,6 +6,22 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/majority-element/description/
+  public int majorityElement(int[] nums) {
+    int n = nums.length;
+    if (n == 0) {
+      return 0;
+    }
+    Map<Integer, Integer> quantityNumber = new HashMap<>();
+    for (Integer num : nums) {
+      int timesSeenBefore = quantityNumber.getOrDefault(num, 0) + 1;
+      if (timesSeenBefore > n / 2) {
+        return num;
+      }
+      quantityNumber.put(num, timesSeenBefore);
+    }
+    return 0;
+  }
   // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
   public int maxProfit(int[] prices) {
     int minPrice = prices[0];

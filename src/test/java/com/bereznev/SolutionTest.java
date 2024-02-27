@@ -17,6 +17,19 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> majorityElementSource() {
+    return Stream.of(
+        Arguments.of(new int[]{3,2,3}, 3),
+        Arguments.of(new int[]{2,2,1,1,1,2,2}, 2)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "majorityElementSource")
+  public void majorityElementTest(int[] input, int expected) {
+    assertEquals(expected, solution.majorityElement(input));
+  }
+
   public static Stream<Arguments> maxProfitSource() {
     return Stream.of(
         Arguments.of(new int[]{7,1,5,3,6,4}, 5),
