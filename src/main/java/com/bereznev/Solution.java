@@ -6,6 +6,24 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/majority-element-ii/
+  public List<Integer> majorityElementTwo(int[] nums) {
+    int n = nums.length;
+    if (n == 0) {
+      return Collections.emptyList();
+    }
+    Set<Integer> majorityElements = new HashSet<>();
+    Map<Integer, Integer> quantityNumber = new HashMap<>();
+    for (Integer num : nums) {
+      int timesSeenBefore = quantityNumber.getOrDefault(num, 0) + 1;
+      if (timesSeenBefore > n / 3) {
+        majorityElements.add(num);
+      }
+      quantityNumber.put(num, timesSeenBefore);
+    }
+    return new ArrayList<>(majorityElements);
+  }
+
   // https://leetcode.com/problems/majority-element/description/
   public int majorityElement(int[] nums) {
     int n = nums.length;
@@ -22,6 +40,7 @@ public class Solution {
     }
     return 0;
   }
+
   // https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
   public int maxProfit(int[] prices) {
     int minPrice = prices[0];
