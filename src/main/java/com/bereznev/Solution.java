@@ -6,6 +6,19 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/contains-duplicate/
+  public boolean containsDuplicate(int[] nums) {
+    Map<Integer, Integer> seenBefore = new HashMap<>();
+    for (Integer num : nums) {
+      int quantity = seenBefore.getOrDefault(num, 0) + 1;
+      if (quantity == 2) {
+        return true;
+      }
+      seenBefore.put(num, quantity);
+    }
+    return false;
+  }
+
   // https://leetcode.com/problems/majority-element-ii/
   public List<Integer> majorityElementTwo(int[] nums) {
     int n = nums.length;

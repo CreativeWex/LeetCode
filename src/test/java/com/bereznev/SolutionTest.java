@@ -17,6 +17,20 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> containsDuplicateSource() {
+    return Stream.of(
+        Arguments.of(new int[]{1,2,3,1}, true),
+        Arguments.of(new int[]{1,2,3,4}, false),
+        Arguments.of(new int[]{1,1,1,3,3,4,3,2,4,2}, true)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "containsDuplicateSource")
+  public void containsDuplicate(int[] input, boolean expected) {
+    assertEquals(expected, solution.containsDuplicate(input));
+  }
+
   public static Stream<Arguments> majorityElementSource() {
     return Stream.of(
         Arguments.of(new int[]{3,2,3}, 3),
