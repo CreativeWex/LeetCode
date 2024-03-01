@@ -17,6 +17,18 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> removeDuplicatesSource() {
+    return Stream.of(
+        Arguments.of(new int[]{1,1,2}, new int[]{1,2}, 2)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "removeDuplicatesSource")
+  public void removeDuplicates(int[] input, int[] expectedArr, int expectedLength) {
+    assertEquals(expectedLength, solution.removeDuplicates(input));
+  }
+
   public static Stream<Arguments> containsDuplicateSource() {
     return Stream.of(
         Arguments.of(new int[]{1,2,3,1}, true),

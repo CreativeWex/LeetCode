@@ -6,6 +6,22 @@ import java.util.*;
 
 @Component
 public class Solution {
+
+  // https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/1190891598/
+  public int removeDuplicates(int[] nums) {
+    if (nums.length == 0) {
+      return 0;
+    }
+    int uniqueCount = 1;
+    for (int i = 1; i < nums.length; i++) {
+      if (nums[i] != nums[i - 1]) {
+        nums[uniqueCount] = nums[i];
+        uniqueCount++;
+      }
+    }
+    return uniqueCount;
+  }
+
   // https://leetcode.com/problems/contains-duplicate/
   public boolean containsDuplicate(int[] nums) {
     Map<Integer, Integer> seenBefore = new HashMap<>();
