@@ -7,6 +7,10 @@ import java.util.*;
 @Component
 public class Solution {
 
+  public String defangIPaddr(String address) {
+    return address.replace(".", "[.]");
+  }
+
   // https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/1190891598/
   public int removeDuplicates(int[] nums) {
     if (nums.length == 0) {
