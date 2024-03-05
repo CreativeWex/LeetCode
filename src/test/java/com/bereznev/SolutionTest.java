@@ -17,9 +17,23 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> sumOfUniqueSource() {
+    return Stream.of(
+        Arguments.of(new int[]{1, 2, 3, 2}, 4),
+        Arguments.of(new int[]{1, 2, 3, 4, 5}, 15),
+        Arguments.of(new int[]{1, 1, 1, 1, 1}, 0)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "sumOfUniqueSource")
+  public void sumOfUniqueTest(int[] input, int expected) {
+    assertEquals(expected, solution.sumOfUnique(input));
+  }
+
   public static Stream<Arguments> removeDuplicatesSource() {
     return Stream.of(
-        Arguments.of(new int[]{1,1,2}, new int[]{1,2}, 2)
+        Arguments.of(new int[]{1, 1, 2}, new int[]{1, 2}, 2)
     );
   }
 
@@ -31,9 +45,9 @@ class SolutionTest {
 
   public static Stream<Arguments> containsDuplicateSource() {
     return Stream.of(
-        Arguments.of(new int[]{1,2,3,1}, true),
-        Arguments.of(new int[]{1,2,3,4}, false),
-        Arguments.of(new int[]{1,1,1,3,3,4,3,2,4,2}, true)
+        Arguments.of(new int[]{1, 2, 3, 1}, true),
+        Arguments.of(new int[]{1, 2, 3, 4}, false),
+        Arguments.of(new int[]{1, 1, 1, 3, 3, 4, 3, 2, 4, 2}, true)
     );
   }
 
@@ -45,8 +59,8 @@ class SolutionTest {
 
   public static Stream<Arguments> majorityElementSource() {
     return Stream.of(
-        Arguments.of(new int[]{3,2,3}, 3),
-        Arguments.of(new int[]{2,2,1,1,1,2,2}, 2)
+        Arguments.of(new int[]{3, 2, 3}, 3),
+        Arguments.of(new int[]{2, 2, 1, 1, 1, 2, 2}, 2)
     );
   }
 
@@ -58,10 +72,10 @@ class SolutionTest {
 
   public static Stream<Arguments> maxProfitSource() {
     return Stream.of(
-        Arguments.of(new int[]{7,1,5,3,6,4}, 5),
-        Arguments.of(new int[]{7,6,4,3,1}, 0),
-        Arguments.of(new int[]{2,4,1}, 2),
-        Arguments.of(new int[]{3,2,6,5,0,3}, 4)
+        Arguments.of(new int[]{7, 1, 5, 3, 6, 4}, 5),
+        Arguments.of(new int[]{7, 6, 4, 3, 1}, 0),
+        Arguments.of(new int[]{2, 4, 1}, 2),
+        Arguments.of(new int[]{3, 2, 6, 5, 0, 3}, 4)
     );
   }
 
@@ -73,8 +87,8 @@ class SolutionTest {
 
   public static Stream<Arguments> singleNumberSource() {
     return Stream.of(
-        Arguments.of(new int[]{2,2,1}, 1),
-        Arguments.of(new int[]{4,1,2,1,2}, 4),
+        Arguments.of(new int[]{2, 2, 1}, 1),
+        Arguments.of(new int[]{4, 1, 2, 1, 2}, 4),
         Arguments.of(new int[]{1}, 1)
     );
   }
@@ -130,8 +144,8 @@ class SolutionTest {
         Arguments.of(new String[]{}, ""),
         Arguments.of(new String[]{null}, ""),
         Arguments.of(new String[]{"11", null}, ""),
-        Arguments.of(new String[]{"flower","flow","flight"}, "fl"),
-        Arguments.of(new String[]{"dog","racecar","car"}, ""),
+        Arguments.of(new String[]{"flower", "flow", "flight"}, "fl"),
+        Arguments.of(new String[]{"dog", "racecar", "car"}, ""),
         Arguments.of(new String[]{"a"}, "a"),
         Arguments.of(new String[]{"ab", "a"}, "a"),
         Arguments.of(new String[]{"flower", "flower", "flower", "flower"}, "flower")

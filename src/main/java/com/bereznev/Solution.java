@@ -6,6 +6,14 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/sum-of-unique-elements/description/
+  public int sumOfUnique(int[] nums) {
+    return Arrays.stream(nums)
+        .filter(i -> Arrays.stream(nums)
+            .filter(num -> num == i)
+            .count() == 1)
+        .sum();
+  }
 
   public String defangIPaddr(String address) {
     return address.replace(".", "[.]");
