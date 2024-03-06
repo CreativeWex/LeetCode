@@ -17,6 +17,19 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> climbStairsSource() {
+    return Stream.of(
+        Arguments.of(2, 2),
+        Arguments.of(3, 3)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "climbStairsSource")
+  public void climbStairs(int input, int expected) {
+    assertEquals(expected, solution.climbStairs(input));
+  }
+
   public static Stream<Arguments> sumOfUniqueSource() {
     return Stream.of(
         Arguments.of(new int[]{1, 2, 3, 2}, 4),
