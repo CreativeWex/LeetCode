@@ -6,6 +6,21 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/check-if-it-is-a-straight-line/description/
+  public boolean checkStraightLine(int[][] coordinates) {
+    if (coordinates.length == 2) {
+      return true;
+    }
+    int[] point1 = coordinates[0];
+    int[] point2 = coordinates[1];
+    for (int i = 2; i < coordinates.length; i++) {
+      int[] currentPoint = coordinates[i];
+      if ((point2[1] - point1[1]) * (currentPoint[0] - point1[0]) != (currentPoint[1] - point1[1]) * (point2[0] - point1[0])) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   // https://leetcode.com/problems/climbing-stairs/description/
   public int climbStairs(int n) {
