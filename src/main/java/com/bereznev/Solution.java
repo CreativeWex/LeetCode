@@ -6,6 +6,20 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+  public int strStr(String haystack, String needle) {
+    if (haystack == null || needle == null || haystack.isEmpty() || !haystack.contains(needle)) {
+      return -1;
+    }
+
+    for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+      if (haystack.startsWith(needle, i)) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
   // https://leetcode.com/problems/check-if-it-is-a-straight-line/description/
   public boolean checkStraightLine(int[][] coordinates) {
     if (coordinates.length == 2) {

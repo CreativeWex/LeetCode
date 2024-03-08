@@ -17,6 +17,21 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> strStrSource() {
+    return Stream.of(
+//        Arguments.of("sadbutsad", "sad", 0),
+//        Arguments.of("hello", "ll", 2),
+//        Arguments.of("abc", "c", 2),
+        Arguments.of("mississippi", "issip", 4)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "strStrSource")
+  public void strStrTes(String haystack, String needle, int expected) {
+    assertEquals(expected, solution.strStr(haystack, needle));
+  }
+
   public static Stream<Arguments> climbStairsSource() {
     return Stream.of(
         Arguments.of(2, 2),
@@ -26,7 +41,7 @@ class SolutionTest {
 
   @ParameterizedTest
   @MethodSource(value = "climbStairsSource")
-  public void climbStairs(int input, int expected) {
+  public void climbStairsTest(int input, int expected) {
     assertEquals(expected, solution.climbStairs(input));
   }
 
