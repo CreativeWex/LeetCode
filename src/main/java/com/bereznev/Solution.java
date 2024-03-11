@@ -2,10 +2,17 @@ package com.bereznev;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Component
 public class Solution {
+
+ // https://leetcode.com/problems/day-of-the-year/
+ public static int dayOfYear(String date) {
+   return LocalDate.parse(date).getDayOfYear();
+ }
+
   // https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
   public int strStr(String haystack, String needle) {
     if (haystack == null || needle == null || haystack.isEmpty() || !haystack.contains(needle)) {

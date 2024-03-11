@@ -17,11 +17,26 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> dayOfYearSource() {
+    return Stream.of(
+        Arguments.of("2019-01-09", 9),
+        Arguments.of("2019-02-10", 41),
+        Arguments.of("2003-03-01", 60),
+        Arguments.of("1992-09-14", 258)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "dayOfYearSource")
+  public void dayOfYearTest(String input, int expected) {
+    assertEquals(expected, solution.dayOfYear(input));
+  }
+
   public static Stream<Arguments> strStrSource() {
     return Stream.of(
-//        Arguments.of("sadbutsad", "sad", 0),
-//        Arguments.of("hello", "ll", 2),
-//        Arguments.of("abc", "c", 2),
+        Arguments.of("sadbutsad", "sad", 0),
+        Arguments.of("hello", "ll", 2),
+        Arguments.of("abc", "c", 2),
         Arguments.of("mississippi", "issip", 4)
     );
   }
