@@ -17,6 +17,21 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> containsNearbyDuplicateSource() {
+    return Stream.of(
+        Arguments.of(new int[]{1, 2, 3, 1}, 3, true),
+        Arguments.of(new int[]{1, 0, 1, 1}, 1, true),
+        Arguments.of(new int[]{1, 2, 3, 1, 2, 3}, 2, false),
+        Arguments.of(new int[]{2, 2}, 3, true)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "containsNearbyDuplicateSource")
+  public void containsNearbyDuplicateTest(int[] nums, int k, boolean expected) {
+    assertEquals(expected, solution.containsNearbyDuplicate(nums, k));
+  }
+
   public static Stream<Arguments> dayOfYearSource() {
     return Stream.of(
         Arguments.of("2019-01-09", 9),

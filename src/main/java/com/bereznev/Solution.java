@@ -8,6 +8,26 @@ import java.util.*;
 @Component
 public class Solution {
 
+  // https://leetcode.com/problems/contains-duplicate-ii/description/
+  public boolean containsNearbyDuplicate(int[] nums, int k) {
+    if (nums == null || nums.length == 0 || k == 0) {
+      return false;
+    }
+
+    Map<Integer, Integer> num2Frequency = new HashMap<>(nums.length);
+    Map<Integer, Integer> num2Index = new HashMap<>(nums.length);
+
+    for (int i = 0; i < nums.length; i++) {
+      int seenBeforeAmount = num2Frequency.getOrDefault(nums[i], 0) + 1;
+      if (seenBeforeAmount > 1 && Math.abs(i - num2Index.get(nums[i])) <= k) {
+        return true;
+      }
+      num2Frequency.put(nums[i], seenBeforeAmount);
+      num2Index.put(nums[i], i);
+    }
+    return false;
+  }
+
  // https://leetcode.com/problems/day-of-the-year/
  public static int dayOfYear(String date) {
    return LocalDate.parse(date).getDayOfYear();
@@ -243,7 +263,6 @@ public class Solution {
     return (int) r;
   }
 
-  //todo unit-test
   //  https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
   public String firstPalindrome(String[] words) {
     for (String word : words) {
