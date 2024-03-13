@@ -17,6 +17,19 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  public static Stream<Arguments> mergeAlternatelySource() {
+    return Stream.of(
+        Arguments.of("abc", "pqr", "apbqcr"),
+        Arguments.of("ab", "pqrs", "apbqrs")
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "mergeAlternatelySource")
+  public void mergeAlternatelyTest(String word1, String word2, String expected) {
+    assertEquals(expected, solution.mergeAlternately(word1, word2));
+  }
+
   public static Stream<Arguments> containsNearbyDuplicateSource() {
     return Stream.of(
         Arguments.of(new int[]{1, 2, 3, 1}, 3, true),
