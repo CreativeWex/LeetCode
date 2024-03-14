@@ -7,6 +7,19 @@ import java.util.*;
 
 @Component
 public class Solution {
+
+  // https://leetcode.com/problems/find-the-difference/?envType=study-plan-v2&envId=programming-skills
+  public char findTheDifference(String s, String t) {
+    char r = 0;
+    for (char c : s.toCharArray()) {
+      r ^= c;
+    }
+    for (char c : t.toCharArray()) {
+      r ^= c;
+    }
+    return r;
+  }
+
   // https://leetcode.com/problems/merge-strings-alternately/description/?envType=study-plan-v2&envId=programming-skills
   public String mergeAlternately(String word1, String word2) {
     StringBuilder result = new StringBuilder();
