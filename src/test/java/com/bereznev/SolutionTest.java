@@ -18,22 +18,19 @@ class SolutionTest {
   Solution solution;
 
   @ParameterizedTest
-  @CsvSource({"abcd, abcde, e",
+  @CsvSource({
+      "abcd, abcde, e",
       "ymbgaraibkfmvocpizdydugvalagaivdbfsfbepeyccqfepzvtpyxtbadkhmwmoswrcxnargtlswqemafandgkmydtimuzvjwxvlfwlhvkrgcsithaqlcvrihrwqkpjdhgfgreqoxzfvhjzojhghfwbvpfzectwwhexthbsndovxejsntmjihchaotbgcysfdaojkjldprwyrnischrgmtvjcorypvopfmegizfkvudubnejzfqffvgdoxohuinkyygbdzmshvyqyhsozwvlhevfepdvafgkqpkmcsikfyxczcovrmwqxxbnhfzcjjcpgzjjfateajnnvlbwhyppdleahgaypxidkpwmfqwqyofwdqgxhjaxvyrzupfwesmxbjszolgwqvfiozofncbohduqgiswuiyddmwlwubetyaummenkdfptjczxemryuotrrymrfdxtrebpbjtpnuhsbnovhectpjhfhahbqrfbyxggobsweefcwxpqsspyssrmdhuelkkvyjxswjwofngpwfxvknkjviiavorwyfzlnktmfwxkvwkrwdcxjfzikdyswsuxegmhtnxjraqrdchaauazfhtklxsksbhwgjphgbasfnlwqwukprgvihntsyymdrfovaszjywuqygpvjtvlsvvqbvzsmgweiayhlubnbsitvfxawhfmfiatxvqrcwjshvovxknnxnyyfexqycrlyksderlqarqhkxyaqwlwoqcribumrqjtelhwdvaiysgjlvksrfvjlcaiwrirtkkxbwgicyhvakxgdjwnwmubkiazdjkfmotglclqndqjxethoutvjchjbkoasnnfbgrnycucfpeovruguzumgmgddqwjgdvaujhyqsqtoexmnfuluaqbxoofvotvfoiexbnprrxptchmlctzgqtkivsilwgwgvpidpvasurraqfkcmxhdapjrlrnkbklwkrvoaziznlpor, qhxepbshlrhoecdaodgpousbzfcqjxulatciapuftffahhlmxbufgjuxstfjvljybfxnenlacmjqoymvamphpxnolwijwcecgwbcjhgdybfffwoygikvoecdggplfohemfypxfsvdrseyhmvkoovxhdvoavsqqbrsqrkqhbtmgwaurgisloqjixfwfvwtszcxwktkwesaxsmhsvlitegrlzkvfqoiiwxbzskzoewbkxtphapavbyvhzvgrrfriddnsrftfowhdanvhjvurhljmpxvpddxmzfgwwpkjrfgqptrmumoemhfpojnxzwlrxkcafvbhlwrapubhveattfifsmiounhqusvhywnxhwrgamgnesxmzliyzisqrwvkiyderyotxhwspqrrkeczjysfujvovsfcfouykcqyjoobfdgnlswfzjmyucaxuaslzwfnetekymrwbvponiaojdqnbmboldvvitamntwnyaeppjaohwkrisrlrgwcjqqgxeqerjrbapfzurcwxhcwzugcgnirkkrxdthtbmdqgvqxilllrsbwjhwqszrjtzyetwubdrlyakzxcveufvhqugyawvkivwonvmrgnchkzdysngqdibhkyboyftxcvvjoggecjsajbuqkjjxfvynrjsnvtfvgpgveycxidhhfauvjovmnbqgoxsafknluyimkczykwdgvqwlvvgdmufxdypwnajkncoynqticfetcdafvtqszuwfmrdggifokwmkgzuxnhncmnsstffqpqbplypapctctfhqpihavligbrutxmmygiyaklqtakdidvnvrjfteazeqmbgklrgrorudayokxptswwkcircwuhcavhdparjfkjypkyxhbgwxbkvpvrtzjaetahmxevmkhdfyidhrdeejapfbafwmdqjqszwnwzgclitdhlnkaiyldwkwwzvhyorgbysyjbxsspnjdewjxbhpsvj, t"
   })
   public void findTheDifferenceTest(String s, String t, char expected) {
     assertEquals(expected, solution.findTheDifference(s, t));
   }
 
-  public static Stream<Arguments> mergeAlternatelySource() {
-    return Stream.of(
-        Arguments.of("abc", "pqr", "apbqcr"),
-        Arguments.of("ab", "pqrs", "apbqrs")
-    );
-  }
-
   @ParameterizedTest
-  @MethodSource(value = "mergeAlternatelySource")
+  @CsvSource({
+      "abc, pqr, apbqcr",
+      "ab, pqrs, apbqrs"
+  })
   public void mergeAlternatelyTest(String word1, String word2, String expected) {
     assertEquals(expected, solution.mergeAlternately(word1, word2));
   }
@@ -53,45 +50,33 @@ class SolutionTest {
     assertEquals(expected, solution.containsNearbyDuplicate(nums, k));
   }
 
-  public static Stream<Arguments> dayOfYearSource() {
-    return Stream.of(
-        Arguments.of("2019-01-09", 9),
-        Arguments.of("2019-02-10", 41),
-        Arguments.of("2003-03-01", 60),
-        Arguments.of("1992-09-14", 258)
-    );
-  }
-
   @ParameterizedTest
-  @MethodSource(value = "dayOfYearSource")
+  @CsvSource({
+      "2019-01-09, 9",
+      "2019-02-10, 41",
+      "2003-03-01, 60",
+      "1992-09-14, 258",
+  })
   public void dayOfYearTest(String input, int expected) {
-    assertEquals(expected, solution.dayOfYear(input));
-  }
-
-  public static Stream<Arguments> strStrSource() {
-    return Stream.of(
-        Arguments.of("sadbutsad", "sad", 0),
-        Arguments.of("hello", "ll", 2),
-        Arguments.of("abc", "c", 2),
-        Arguments.of("mississippi", "issip", 4)
-    );
+    assertEquals(expected, Solution.dayOfYear(input));
   }
 
   @ParameterizedTest
-  @MethodSource(value = "strStrSource")
+  @CsvSource({
+      "sadbutsad, sad, 0",
+      "hello, ll, 2",
+      "abc, c,2",
+      "mississippi, issip, 4",
+  })
   public void strStrTes(String haystack, String needle, int expected) {
     assertEquals(expected, solution.strStr(haystack, needle));
   }
 
-  public static Stream<Arguments> climbStairsSource() {
-    return Stream.of(
-        Arguments.of(2, 2),
-        Arguments.of(3, 3)
-    );
-  }
-
   @ParameterizedTest
-  @MethodSource(value = "climbStairsSource")
+  @CsvSource({
+      "2, 2",
+      "3, 3",
+  })
   public void climbStairsTest(int input, int expected) {
     assertEquals(expected, solution.climbStairs(input));
   }
@@ -112,13 +97,13 @@ class SolutionTest {
 
   public static Stream<Arguments> removeDuplicatesSource() {
     return Stream.of(
-        Arguments.of(new int[]{1, 1, 2}, new int[]{1, 2}, 2)
+        Arguments.of(new int[]{1, 1, 2}, 2)
     );
   }
 
   @ParameterizedTest
   @MethodSource(value = "removeDuplicatesSource")
-  public void removeDuplicates(int[] input, int[] expectedArr, int expectedLength) {
+  public void removeDuplicates(int[] input, int expectedLength) {
     assertEquals(expectedLength, solution.removeDuplicates(input));
   }
 
@@ -178,21 +163,17 @@ class SolutionTest {
     assertEquals(expected, solution.singleNumber(input));
   }
 
-  public static Stream<Arguments> isParenthesesValidSource() {
-    return Stream.of(
-        Arguments.of("()", true),
-        Arguments.of("[]", true),
-        Arguments.of("{}", true),
-        Arguments.of("()[]{}", true),
-        Arguments.of("()[]{", false),
-        Arguments.of("[", false),
-        Arguments.of("[[", false),
-        Arguments.of("]]", false)
-    );
-  }
-
   @ParameterizedTest
-  @MethodSource(value = "isParenthesesValidSource")
+  @CsvSource({
+      "(), true",
+      "[], true",
+      "{}, true",
+      "()[]{}, true",
+      "()[]{, false",
+      "{, false",
+      "[[, false",
+      "]], false",
+  })
   public void isParenthesesValidTest(String string, boolean expected) {
     assertEquals(expected, solution.isParenthesesValid(string));
   }
@@ -203,17 +184,13 @@ class SolutionTest {
     assertEquals(expected, solution.mySqrt(x));
   }
 
-  public static Stream<Arguments> isPalindromeSource() {
-    return Stream.of(
-        Arguments.of(121, true),
-        Arguments.of(-121, false),
-        Arguments.of(10, false),
-        Arguments.of(1221, true)
-    );
-  }
-
   @ParameterizedTest
-  @MethodSource(value = "isPalindromeSource")
+  @CsvSource({
+      "121, true",
+      "-121, false",
+      "10, false",
+      "1221, true",
+  })
   public void isPalindromeTest(int x, boolean expected) {
     assertEquals(expected, solution.isPalindrome(x));
   }
@@ -237,19 +214,14 @@ class SolutionTest {
     assertEquals(expected, solution.longestCommonPrefix(input));
   }
 
-  public static Stream<Arguments> romanToIntSource() {
-    return Stream.of(
-        Arguments.of("", "0"),
-        Arguments.of("I", "1"),
-        Arguments.of("VI", "6"),
-        Arguments.of("IX", "9"),
-        Arguments.of("LVIII", "58"),
-        Arguments.of("MCMXCIV", "1994")
-    );
-  }
-
   @ParameterizedTest
-  @MethodSource(value = "romanToIntSource")
+  @CsvSource({
+      "I, 1",
+      "VI, 6",
+      "IX, 9",
+      "LVIII, 58",
+      "MCMXCIV, 1994",
+  })
   public void romanToIntTest(String input, String result) {
     assertEquals(Integer.parseInt(result), solution.romanToInt(input));
   }
