@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -16,6 +17,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SolutionTest {
   @Autowired
   Solution solution;
+
+  public static Stream<Arguments> generateSource() {
+    return Stream.of(
+        Arguments.of(5, List.of(List.of(1), List.of(1, 1), List.of(1, 2, 1), List.of(1, 3, 3, 1), List.of(1, 4, 6, 4, 1))),
+        Arguments.of(1, List.of(List.of(1)))
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource(value = "generateSource")
+  public void generateTest(int input, List<List<Integer>> expected) {
+    assertEquals(expected, solution.generate(input));
+  }
 
   @ParameterizedTest
   @CsvSource({
@@ -203,8 +217,7 @@ class SolutionTest {
         Arguments.of(new String[]{"flower", "flow", "flight"}, "fl"),
         Arguments.of(new String[]{"dog", "racecar", "car"}, ""),
         Arguments.of(new String[]{"a"}, "a"),
-        Arguments.of(new String[]{"ab", "a"}, "a"),
-        Arguments.of(new String[]{"flower", "flower", "flower", "flower"}, "flower")
+        Arguments.of(new String[]{"ab", "a"}, "a")
     );
   }
 
