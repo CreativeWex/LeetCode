@@ -18,6 +18,15 @@ class SolutionTest {
   @Autowired
   Solution solution;
 
+  @ParameterizedTest
+  @CsvSource({
+      "anagram, nagaram, true",
+      "rat, car, false",
+  })
+  public void isAnagramTest(String s, String t, boolean expected) {
+    assertEquals(expected, solution.isAnagram(s, t));
+  }
+
   public static Stream<Arguments> generateSource() {
     return Stream.of(
         Arguments.of(5, List.of(List.of(1), List.of(1, 1), List.of(1, 2, 1), List.of(1, 3, 3, 1), List.of(1, 4, 6, 4, 1))),
@@ -82,7 +91,7 @@ class SolutionTest {
       "abc, c,2",
       "mississippi, issip, 4",
   })
-  public void strStrTes(String haystack, String needle, int expected) {
+  public void strStrTest(String haystack, String needle, int expected) {
     assertEquals(expected, solution.strStr(haystack, needle));
   }
 

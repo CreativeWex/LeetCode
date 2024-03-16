@@ -7,6 +7,19 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/valid-anagram/description/?envType=study-plan-v2&envId=programming-skills
+  public boolean isAnagram(String s, String t) {
+    if (s == null || t == null || s.isEmpty() || t.isEmpty() || s.length() != t.length()) {
+      return false;
+    }
+    char[] sChars = s.toCharArray();
+    char[] tChars = t.toCharArray();
+    Arrays.sort(sChars);
+    Arrays.sort(tChars);
+
+    return Arrays.equals(sChars, tChars);
+  }
+
   // https://leetcode.com/problems/pascals-triangle/description/
   public List<List<Integer>> generate(int numRows) {
     List<List<Integer>> triangle = new ArrayList<>();
