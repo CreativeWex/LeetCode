@@ -20,6 +20,18 @@ class SolutionTest {
 
   @ParameterizedTest
   @CsvSource({
+      "abab, true",
+      "aba, false",
+      "abcabcabcabc, true",
+      "aaaa, true",
+      "abaababaab, true"
+  })
+  public void isAnagramTest(String input, boolean expected) {
+    assertEquals(expected, solution.repeatedSubstringPattern(input));
+  }
+
+  @ParameterizedTest
+  @CsvSource({
       "anagram, nagaram, true",
       "rat, car, false",
   })

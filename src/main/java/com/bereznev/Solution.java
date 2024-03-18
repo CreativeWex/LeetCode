@@ -7,6 +7,24 @@ import java.util.*;
 
 @Component
 public class Solution {
+  // https://leetcode.com/problems/repeated-substring-pattern/description/?envType=study-plan-v2&envId=programming-skills
+  public boolean repeatedSubstringPattern(String s) {
+    int n = s.length();
+    for (int i = 1; i <= n / 2; i++) {
+      if (n % i == 0) {
+        String substring = s.substring(0, i);
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < n) {
+          sb.append(substring);
+        }
+        if (sb.toString().equals(s)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   // https://leetcode.com/problems/valid-anagram/description/?envType=study-plan-v2&envId=programming-skills
   public boolean isAnagram(String s, String t) {
     if (s == null || t == null || s.isEmpty() || t.isEmpty() || s.length() != t.length()) {
@@ -91,10 +109,10 @@ public class Solution {
     return false;
   }
 
- // https://leetcode.com/problems/day-of-the-year/
- public static int dayOfYear(String date) {
-   return LocalDate.parse(date).getDayOfYear();
- }
+  // https://leetcode.com/problems/day-of-the-year/
+  public static int dayOfYear(String date) {
+    return LocalDate.parse(date).getDayOfYear();
+  }
 
   // https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
   public int strStr(String haystack, String needle) {
