@@ -453,4 +453,10 @@ public class Solution {
     }
     return new int[]{0, 0};
   }
+
+  // https://leetcode.com/problems/to-lower-case/description/?envType=study-plan-v2&envId=programming-skills
+  @SuppressWarnings("unused")
+  public String toLowerCase(String s) {
+    return s.toLowerCase();
+  }
 }
