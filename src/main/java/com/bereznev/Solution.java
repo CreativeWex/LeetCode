@@ -7,6 +7,20 @@ import java.util.*;
 
 @Component
 public class Solution {
+
+  // Todo
+  // https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/?envType=study-plan-v2&envId=programming-skills
+  public boolean canMakeArithmeticProgression(int[] arr) {
+    Arrays.sort(arr);
+    int commonDifference = arr[1] - arr[0];
+    for (int i = 1; i < arr.length - 1; i++) {
+      if (arr[i + 1] - arr[i] != commonDifference) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   // https://leetcode.com/problems/repeated-substring-pattern/description/?envType=study-plan-v2&envId=programming-skills
   public boolean repeatedSubstringPattern(String s) {
     int n = s.length();
