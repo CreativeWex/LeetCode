@@ -8,8 +8,31 @@ import java.util.*;
 @Component
 public class Solution {
 
-  // Todo
+  public int arraySign(int[] nums) {
+    int product = 1;
+
+    // Вычисляем произведение всех значений в массиве
+    for (int num : nums) {
+      product *= num;
+    }
+
+    // Определяем знак произведения с помощью функции signFunc
+    return signFunc(product);
+  }
+
+  // Определяем функцию signFunc
+  private int signFunc(int x) {
+    if (x > 0) {
+      return 1;
+    } else if (x < 0) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
   // https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/?envType=study-plan-v2&envId=programming-skills
+  @SuppressWarnings("unused")
   public boolean canMakeArithmeticProgression(int[] arr) {
     Arrays.sort(arr);
     int commonDifference = arr[1] - arr[0];
